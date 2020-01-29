@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="no-scroll">
+
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<title>iQuipsys Positron</title>
+
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="pip-webui-lib.css" />
+	<link rel="stylesheet" href="pip-webui-lib-optional.css" />
+	<link rel="stylesheet" href="pip-webui.css" />
+	<link rel="stylesheet" href="pip-suite.css" />
+	<link rel="stylesheet" href="iqs-client-shell.css" />
+	<link rel="stylesheet" href="pip-admin-system.css" />
+	<link rel="stylesheet" href="iqs-client-positron-app.css" />
+	<style>
+		.loader,
+		.loader:before,
+		.loader:after {
+			border-radius: 50%;
+		}
+		
+		.loader {
+			color: #1565c0;
+			background: #d8d8d8;
+			font-size: 11px;
+			text-indent: -99999em;
+			margin: 0 auto;
+			position: relative;
+			width: 20em;
+			height: 20em;
+			box-shadow: inset 0 0 0 1em;
+			-webkit-transform: translateZ(0);
+			-ms-transform: translateZ(0);
+			transform: translateZ(0);
+		}
+		
+		.loader:before,
+		.loader:after {
+			position: absolute;
+			content: '';
+		}
+		
+		.loader:before {
+			width: 10.2em;
+			height: 20.4em;
+			background: #d8d8d8;
+			border-radius: 20.4em 0 0 20.4em;
+			top: -0.1em;
+			left: -0.1em;
+			-webkit-transform-origin: 10.2em 10.2em;
+			transform-origin: 10.2em 10.2em;
+			-webkit-animation: load2 2s infinite ease 1.5s;
+			animation: load2 2s infinite ease 1.5s;
+		}
+		
+		.loader:after {
+			width: 10.2em;
+			height: 20.4em;
+			background: #d8d8d8;
+			border-radius: 0 20.4em 20.4em 0;
+			top: -0.1em;
+			left: 10em;
+			-webkit-transform-origin: 0px 10.2em;
+			transform-origin: 0px 10.2em;
+			-webkit-animation: load2 2s infinite ease;
+			animation: load2 2s infinite ease;
+		}
+		
+		@-webkit-keyframes load2 {
+			0% {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+			100% {
+				-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+		
+		@keyframes load2 {
+			0% {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+			100% {
+				-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+	<script>
+		// hak for ie
+		if (!String.prototype.startsWith) {
+			String.prototype.startsWith = function(searchString, position) {
+			position = position || 0;
+			return this.indexOf(searchString, position) === position;
+			};
+		}
+		</script>
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+</head>
+
+<body ng-app="iqsPositronUserSettingsApp" ng-controller="iqsPositronUserSettingsAppController  as mainCtrl" class="layout-column iqs-main" 
+	ng-class="{'pip-windows': mainCtrl.isChrome}">
+
+
+	<iqs-client-shell>
+	<!-- ng-if="(mainCtrl.isEntryPage() || mainCtrl.identity.id)"-->
+
+	<!-- <div class="layout-column flex layout-align-center-center" style="width: 100%; height: 100%; background-color: #eeeeee;">
+		<div class="loader"></div>
+		<img src="images/iqs-logo-color.svg" height="70" width="70" style="position: absolute; z-index: 1000;
+		top: calc(50% - 35px);
+		left: calc(50% - 32px);">
+	</div> -->
+	<div class="layout-column flex layout-align-center-center" style="width: 100%; height: 100%; background-color: #eeeeee;">
+		<div style="padding: 16px; text-align: center;">
+			Application is loading. <br>Depending on your connection speed it might take a few minutes.
+		</div>
+	</div>
+	</iqs-client-shell>
+
+	<div style="display: none;"><img src="images/no_response.svg"></div>
+	<div style="display: none;"><img src="images/iqs-logo-color.svg"></div>
+
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&sensor=true&key=AIzaSyBg6cm-FDBFPWzRcn39AuSHGQSrdtVIjEo"></script>
+	<script src="https://www.google.com/jsapi"></script>
+	<script src="pip-webui-lib.js"></script>
+	<script src="pip-webui-lib-optional.js"></script>
+	<script src="pip-webui.js"></script>
+	<script src="pip-suite.js"></script>
+
+	<script src="iqs-client-shell.js"></script>
+	<script src="pip-admin-system.js"></script>
+
+
+	<script src="iqs-client-positron-app.js" defer></script>
+</body>
+
+</html>

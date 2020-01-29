@@ -1,0 +1,125 @@
+<form name="form" class="w-stretch" novalidate ng-show="$ctrl.state == 'data' && !$ctrl.isPreLoading">
+    <md-progress-linear class="pip-progress-top" ng-show="$ctrl.transaction.busy()" md-mode="indeterminate"></md-progress-linear>
+    <div class="layout-row bm12">
+        <div class="md-tile-left">
+            <pip-avatar-edit pip-id="$ctrl.pipIdentity.identity.user.id" pip-created="$ctrl.onPictureCreated($event)"
+                             pip-changed="$ctrl.onPictureChanged($control, $event)">
+            </pip-avatar-edit>
+        </div>
+        <div class="md-tile-content tp0 layout-align-center">
+            <h3 class="tm16 bm8 text-one-line">{{ $ctrl.identity.user_name }}</h3>
+
+            <p class="text-primary text-overflow m0">
+                {{::'SETTINGS_BASIC_INFO_FROM' | translate}} {{ $ctrl.identity.user.create_time | formatLongDate }}
+            </p>
+        </div>
+    </div>
+
+    <div class="tm24 tp8">
+
+        <md-input-container class="md-block m0">
+            <label>{{::'SETTINGS_BASIC_INFO_FULL_NAME' | translate}}</label>
+            <input name="fullName" step="any" type="text" tabindex="0" required ng-model="$ctrl.identity.user.name"
+                   ng-disabled="$ctrl.transaction.busy()" ng-change="$ctrl.onChangeUser()" />
+
+            <div class="hint" ng-if="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.fullName).hint">
+                {{::'ERROR_FULLNAME_INVALID' | translate}}
+            </div>
+        </md-input-container>
+
+        <md-input-container class="md-block flex m0">
+            <label>{{::'SETTINGS_BASIC_INFO_DESCRIPTION' | translate }}</label>
+            <input ng-model="$ctrl.identity.user.about" columns="1" ng-change="$ctrl.onChangeUser()" />
+        </md-input-container>
+
+        <div class="layout-row">
+            <md-input-container class="md-block flex bm0">
+                <label>{{::'SETTINGS_BASIC_INFO_PHONE' | translate}}</label>
+                <input iqs-test-udi ng-model="$ctrl.phone" aria-label="PHONE" ng-model-options="{ delay: 500 }"
+                       ng-change="$ctrl.onChangePhone()" iqs-phone-validator name="phone">
+
+                <!-- <div class="hint" ng-if="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.phone).hint">
+                            {{::'SETTINGS_BASIC_INFO_PHONE' | translate}}
+                        </div> -->
+
+                <div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.phone)" role="alert">
+                    <div ng-message="phoneVerify">{{::'SETTINGS_BASIC_INFO_PHONE_VERIFY_ERROR' | translate}}</div>
+                    <div ng-message="phoneValidate">{{ 'SETTINGS_BASIC_INFO_PHONE_VALIDATE_ERROR' | translate }}</div>
+
+                </div>
+            </md-input-container>
+
+            <md-button ng-click="$ctrl.onVerifyPhone($event)" class="md-raised md-primary m0 lm24 bm24" ng-if="$ctrl.isPhoneNotVerify">
+                {{::'SETTINGS_BASIC_INFO_VERIFY_PHONE_BUTTON' | translate}}
+            </md-button>
+        </div>
+
+        <div class="layout-row">
+            <md-input-container class="md-block flex bm0">
+                <label>{{::'SETTINGS_BASIC_INFO_PRIMARY_EMAIL' | translate}}</label>
+                <input name="email" required ng-model="$ctrl.email" ng-model-options="{ delay: 500 }" ng-change="$ctrl.onChangeEmail()"
+                       xxxpip-email-unique="{{ $ctrl.email }}" />
+
+                <!-- <div class="hint" ng-if="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.email).hint">
+                    {{::'SETTINGS_BASIC_INFO_VERIFY_HINT' | translate}}
+                </div> -->
+                <div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.email)">
+                    <div ng-message="email">{{::'ERROR_EMAIL_INVALID' | translate}}</div>
+                    <div ng-message="emailUnique">{{::'ERROR_EMAIL_INVALID' | translate}}</div>
+                    <div ng-message="emailVerify">{{::'SETTINGS_BASIC_INFO_EMAIL_NOT_VERIFY' | translate}}</div>
+                </div>
+            </md-input-container>
+
+            <md-button ng-click="$ctrl.onVerifyEmail($event)" class="md-raised md-primary m0 lm24 bm24" ng-if="$ctrl.isEmailNotVerify">
+                {{::'SETTINGS_BASIC_INFO_VERIFY_EMAIL_BUTTON' | translate}}
+            </md-button>
+        </div>
+
+        <!-- <md-input-container class="md-block bm0">
+            <label>{{::'SETTINGS_BASIC_INFO_PRIMARY_EMAIL' | translate}}</label>
+            <input name="email" required ng-model="$ctrl.identity.user.login" ng-change="$ctrl.onChangeUser()" pip-email-unique="{{$ctrl.identity.user.login}}"
+            />
+
+            <div class="hint" ng-if="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.email).hint && !$ctrl.$user.email_ver">
+                {{::'SETTINGS_BASIC_INFO_VERIFY_HINT' | translate}}
+            </div>
+            <div ng-messages="$ctrl.touchedErrorsWithHint(touchedErrorsWithHint, $ctrl.form.email)" >
+                <div ng-message="email">{{::'ERROR_EMAIL_INVALID' | translate}}</div>
+                <div ng-message="emailUnique">{{::'ERROR_EMAIL_INVALID' | translate}}</div>
+            </div>
+        </md-input-container> -->
+
+        <md-button ng-click="$ctrl.onChangePassword($event)" class="md-raised md-primary m0 bm24">
+            {{::'SETTINGS_BASIC_INFO_CHANGE_PASSWORD' | translate}}
+        </md-button>
+
+        <md-input-container class="md-block">
+            <label>{{::'LANGUAGE' | translate}}</label>
+            <md-select placeholder="{{'LANGUAGE' | translate}}" ng-model="$ctrl.identity.user.language" ng-change="$ctrl.onChangeUserLanguage()">
+                <md-option ng-value="language.id" ng-repeat="language in $ctrl.languages">
+                    {{language.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{::'THEME' | translate}}</label>
+            <md-select class="w-stretch theme-text-primary" ng-model="$ctrl.identity.user.theme" ng-change="$ctrl.onChangeUser()"
+                       ng-disabled="$ctrl.transaction.busy()">
+                <md-option ng-value="theme" ng-repeat="theme in $ctrl.themes" ng-selected="$ctrl.identity.user.theme == theme ? true : false">
+                    {{ theme | translate }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+</form>
+
+<div class="layout-column layout-align-center-center flex" style="overflow-x: hidden;" ng-if="$ctrl.state == 'progress' || $ctrl.isPreLoading">
+    <div class="pip-empty">
+        <img src="images/empty/progress.svg" class="pip-pic">
+        <div class="pip-text">
+            {{:: 'LOADING_USER_SETTINGS' | translate }}
+            <md-progress-linear md-mode="indeterminate" class="tm24"></md-progress-linear>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+{
+    "name": "iqs-clients-usersettings-angular",
+    "version": "1.0.0",
+    "author": "iQuipsys Inc. <www.iquipsys.com>",
+    "description": "User settings client microapplication for iQuipsys Positron in Angular",
+    "contributors": [
+        {
+            "name": "Sergey Seroukhov",
+            "email": "seroukhov@gmail.com"
+        },
+        {
+            "name": "Anastas Fonotov",
+            "email": "anastasf@gmail.com"
+        }
+    ],
+    "keywords": [
+        "iquipsys",
+        "positron",
+        "user settings"
+    ],
+    "noAnalyze": true,
+    "license": "MIT",
+    "private": false,
+    "dependencies": {},
+    "devDependencies": {}
+}

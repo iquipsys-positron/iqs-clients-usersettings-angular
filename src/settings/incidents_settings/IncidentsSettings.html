@@ -1,0 +1,65 @@
+<div class="iqs-setting-inciden">
+    <md-progress-linear ng-show="$ctrl.transaction.busy()" md-mode="indeterminate" class="pip-progress-top">
+    </md-progress-linear>
+
+    <div class="iqs-setting-incident-container layout-column w-stretch pointer" ng-repeat="setting in $ctrl.incidentEventRuleSettings track by $index"
+         ng-if="$ctrl.currState != 'progress'">
+
+        <div class="layout-row w-stretch layout-align-start-center" ng-click="setting.expanded = !setting.expanded;">
+            <md-switch class="switch tm16 bm16 rm8 flex-fixed" ng-change="$ctrl.onDeferredSaveChanges()" ng-model="setting.enabled"
+                       aria-label="ENABLE-INCIDENT">
+            </md-switch>
+            <div class="flex">
+                <p class="flex m0">
+                    {{ setting.rule_name | translate }}
+                </p>
+                <p class="flex m0">
+                    {{ setting | formatObjectsList }}
+                </p>
+            </div>
+            <div class="flex-fixed">
+                <md-button class="md-icon-button m0 p0" aria-label="expand">
+                    <md-icon md-svg-icon="icons:chevron-down" ng-if="!setting.expanded"></md-icon>
+                    <md-icon md-svg-icon="icons:chevron-up" ng-if="setting.expanded"></md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div class="iqs-incidents-exclusion-container flex" ng-if="setting.expanded">
+            <iqs-incidents-exclusion class="w-stretch" iqs-incident-settings-item="setting" ng-disabled="$ctrl.transaction.busy()"
+                                     iqs-save="$ctrl.onSave(item)">
+            </iqs-incidents-exclusion>
+
+            <md-input-container class="md-block flex tm24 bm0">
+                <label>{{::'SETTING_INCIDENT_SIGNAL_TYPE'| translate}}</label>
+                <md-select iqs-test-type ng-model="setting.sendSignalType" required aria-label="SIGNAL_TYPE" name="signal_type"
+                           ng-disabled="$ctrl.transaction.busy()" ng-change="$ctrl.onSignalChange(setting)">
+                    <md-option ng-repeat="type in $ctrl.typeCollection  track by $index" ng-value="type.id">
+                        {{::type.title | translate}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+        </div>
+        <div class="divider-bottom"></div>
+    </div>
+</div>
+
+<div class="pip-body rp0 layout-column layout-align-center-center flex " ng-if="!$ctrl.incidentEventRuleSettings || $ctrl.incidentEventRuleSettings.length == 0 || $ctrl.currState == 'progress' || $ctrl.isPreLoading">
+
+    <div class="layout-column layout-align-center-center flex iqs-empty" ng-if="$ctrl.currState != 'progress' && !$ctrl.isPreLoading">
+        <div class="pip-empty">
+            <img src="images/empty/empty.svg" class="pip-pic">
+            <div class="pip-text">
+                {{ ::'INCIDENT_SETTINGS_EMPTY_TITLE' | translate }}
+            </div>
+        </div>
+    </div>
+
+    <div class="pip-empty" ng-if="$ctrl.currState == 'progress' || $ctrl.isPreLoading">
+        <img src="images/empty/progress.svg" class="pip-pic">
+        <div class="pip-text">
+            {{ ::'RULES_LOADING_TITLE' | translate }}
+            <md-progress-linear md-mode="indeterminate" class="tm24"></md-progress-linear>
+        </div>
+    </div>
+</div>

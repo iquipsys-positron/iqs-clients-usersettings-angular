@@ -1,0 +1,16 @@
+
+.iqs-incidents-exclusion-panel {
+    .md-chip-input-container {
+        width: 100%;
+    }
+    .md-chips md-chip {
+        padding-left: 0px;
+        pip-avatar.pip-face {
+            width: 32px !important;
+            height: 32px !important;
+            div {
+                line-height: 34px !important;
+            }
+        }
+    }
+}

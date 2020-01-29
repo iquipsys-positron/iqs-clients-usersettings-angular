@@ -1,0 +1,19 @@
+@import './panels/IncidentsExclusion';
+
+.iqs-setting-incident {
+
+    .iqs-setting-incident-container {
+        min-height: 48px;
+    }
+
+    .divider-bottom {
+        margin: 0px -24px;
+    }
+
+    .iqs-incidents-exclusion-container {
+        padding-left: 48px;
+        padding-bottom: 16px;  
+        padding-right: 16px;      
+    }
+}
+

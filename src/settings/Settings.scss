@@ -1,0 +1,42 @@
+@import "./incidents_settings/IncidentsSettings";
+@import './user_settings/index';
+.pip-settings {
+    .md-tile-left {
+        position: relative;
+        margin-right: 16px;
+        height: 80px;
+        width: 80px
+    }
+    .pip-sessions.pip-details-title {
+        .pip-subtitle {
+            min-height: 24px;
+            line-height: 24px;
+            height: auto;
+            white-space: normal;
+        }
+    }
+}
+
+.change-password-dialog,
+.verify-email-dialog {
+    width: 440px;
+}
+
+.pip-contact-info {
+    md-select {
+        min-width: 150px;
+    }
+    .pip-select {
+        margin-top: 4px;
+        md-select {
+            height: 44px;
+        }
+    }
+    md-input-container {
+        margin-bottom: 8px;
+        .md-errors-spacer {
+            height: 0 !important;
+            min-height: 0;
+        }
+    }
+}

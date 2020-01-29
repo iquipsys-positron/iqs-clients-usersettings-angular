@@ -1,0 +1,58 @@
+<md-dialog class="pip-dialog layout-column bp0 pip-scroll iqs-confirm-phone-dialog" style="max-width: 80%" md-theme="{{$ctrl.theme}}">
+	<md-progress-linear class="pip-progress-top" ng-show="$ctrl.transaction.busy()" md-mode="indeterminate"></md-progress-linear>
+	<div class="pip-header p16 layout-column">
+		<div class="w-stretch">
+			<h3 class="m0 w-stretch">{{ ::'CONIRM_PHONE_DIALOG_TITLE' | translate }}</h3>
+		</div>
+	</div>
+
+	<div class="pip-body lp16 rp16">
+		<div class="text-body1 tp16 bp16">
+			{{ ::'CONIRM_PHONE_CODE_LABEL' | translate }}
+		</div>
+		<div class="h48 text-body1">
+			<span class="fg-green" ng-if="$ctrl.state == 'confirm'">
+				{{ ::'CONIRM_PHONE_CODE_SUCCESS_LABEL' | translate }}
+			</span>
+			<span class="color-error" ng-if="$ctrl.state == 'confirm error'">
+				{{ ::'CONIRM_PHONE_CODE_VERIFY_ERROR_LABEL' | translate }}
+			</span>
+			<span class="color-error" ng-if="$ctrl.state == 'sending error'">
+				{{ ::'CONIRM_PHONE_CODE_SEND_ERROR_LABEL' | translate }}
+			</span>
+			<span class="fg-green" ng-if="$ctrl.state == 'sending'">
+				{{ ::'CONIRM_PHONE_CODE_SENDING_LABEL' | translate }}
+			</span>
+
+		</div>
+
+		<md-input-container class="md-block flex hide-md-errors-spacer bm24">
+			<label> {{ ::'CONIRM_PHONE_CODE_PLACEHOLDER' | translate }}</label>
+			<input name="code" ng-model="$ctrl.code" aria-label="PHONE_CONFIRM_CODE" />
+		</md-input-container>
+
+		<div xxclass="flex layout-row">
+			<!-- <md-button class="md-raised md-primary flex" ng-click="$ctrl.onSendCode()" ng-disabled="$ctrl.transaction.busy()">
+				{{ ::'CONIRM_PHONE_DIALOG_SEND_CODE_BUTTON' | translate }}
+			</md-button> -->
+			<p>
+				{{'CONIRM_SMS_DIALOG_SEND_CODE_TEXT_21' | translate}}
+				<a ng-click="$ctrl.onSendCode()" class="pointer" href="">{{'CONIRM_SMS_DIALOG_SEND_CODE_RESEND' | translate}}</a>
+				{{'CONIRM_SMS_DIALOG_SEND_CODE_TEXT_22' | translate}}
+			</p>
+		</div>
+
+	</div>
+
+
+
+	<div class="pip-footer ">
+		<div class="flex"></div>
+		<md-button class="md-accent" ng-click="$ctrl.cancel()">
+			{{ ::'CONIRM_PHONE_DIALOG_CANCEL_BUTTON' | translate }}
+		</md-button>
+		<md-button class="md-accent" ng-disabled="!$ctrl.code || $ctrl.transaction.busy()" ng-click="$ctrl.onConfirm()">
+			{{ ::'CONIRM_PHONE_DIALOG_CONFIRM_BUTTON' | translate }}
+		</md-button>
+	</div>
+</md-dialog>

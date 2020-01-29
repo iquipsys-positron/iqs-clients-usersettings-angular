@@ -1,0 +1,48 @@
+<form name="form" novalidate class="layout-column">
+    <div class="layout-column">
+        <div>
+            <span>{{ ::'SETTINGS_INCIDENT_INCLUDE_OBJECT' | translate }}</span>
+        </div>
+        <div class="bm16">
+            <md-chips ng-model="$ctrl.objectInclude"  md-on-remove="$ctrl.onChange()" md-on-add="$ctrl.onChange()"
+                class="display flex" ng-disabled="$ctrl.ngDisabled()" md-autocomplete-snap md-require-match="true">
+                <md-autocomplete ng-disabled="$ctrl.ngDisabled()" class="text-subhead1" md-items="chip in $ctrl.getVariantsInclude($ctrl.includeSearch)"
+                    md-selected-item='chip' md-search-text="$ctrl.includeSearch" md-menu-class="iqs-global-search-menu" placeholder="{{ ::'SETTINGS_INCIDENT_INCLUDE_OBJECT_PLACEHOLDER' | translate }}">
+                    <span md-highlight-text="$ctrl.includeSearch">{{ chip.name }}</span>
+                    <md-item-template>
+                        {{ chip.name }}
+                    </md-item-template>
+                </md-autocomplete>
+                <md-chip-template class="layout-row rm8">
+                    <pip-avatar class="pip-face rm8" pip-rebind="true" pip-id="$chip.id" pip-name="$chip.name">
+                    </pip-avatar>
+                    <span>
+                    {{ $chip.name }}
+                </span>
+                </md-chip-template>
+            </md-chips>
+        </div>
+    </div>
+    <div class="layout-column">
+        <div>
+            <span>{{ ::'SETTINGS_INCIDENT_EXCLUDE_OBJECT' | translate }}</span>
+        </div>
+            <md-chips ng-model="$ctrl.objectExclude"  md-on-remove="$ctrl.onChange()" md-on-add="$ctrl.onChange()"
+                class="display flex" ng-disabled="$ctrl.ngDisabled()" md-autocomplete-snap md-require-match="true">
+                <md-autocomplete ng-disabled="$ctrl.ngDisabled()" class="text-subhead1" md-items="chip in $ctrl.getVariantsExclude($ctrl.excludeSearch)"
+                    md-selected-item='chip' md-search-text="$ctrl.excludeSearch" md-menu-class="iqs-global-search-menu" placeholder="{{ ::'SETTINGS_INCIDENT_EXCLUDE_OBJECT_PLACEHOLDER' | translate }}">
+                    <span md-highlight-text="$ctrl.excludeSearch">{{ chip.name }}</span>
+                    <md-item-template>
+                        {{ chip.name }}
+                    </md-item-template>
+                </md-autocomplete>
+                <md-chip-template class="layout-row rm8">
+                    <pip-avatar class="pip-face rm8" pip-rebind="true" pip-id="$chip.id" pip-name="$chip.name">
+                    </pip-avatar>
+                    <span>
+                    {{ $chip.name }}
+                </span>
+                </md-chip-template>
+            </md-chips>
+    </div>
+</form>
