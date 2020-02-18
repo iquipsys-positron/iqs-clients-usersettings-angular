@@ -1,10 +1,4 @@
 (() => {
-    function iqsPositronUserSettingsConfig(
-        pipAuthStateProvider: pip.rest.IAuthStateProvider
-    ) {
-        pipAuthStateProvider.authorizedState = 'settings.user';
-    }
-
     angular
         .module('iqsPositronUserSettings.Config', [
             'ngCookies',
@@ -12,6 +6,5 @@
             'pipSettings',
             'pipSystem',
             'pipSystem.Templates',
-        ])
-        .config(iqsPositronUserSettingsConfig);
+        ]);
 })();
