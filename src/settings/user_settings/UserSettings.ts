@@ -73,9 +73,7 @@ import { IConfirmEmailDialogService } from './dialogs/confirm_email/IConfirmEmai
             const runWhenReady = () => {
                 // hak for 'default' theme
                 this.identity = _.cloneDeep(pipIdentity.identity);
-                let themesIndex: number = _.findIndex(this.themes, (theme: string) => {
-                    this.identity.user.theme == theme;
-                })
+                let themesIndex: number = _.findIndex(this.themes, (theme: string) => this.identity.user.theme === theme);
 
                 if (themesIndex < 0) {
                     this.identity.user.theme = 'iqt-main';
